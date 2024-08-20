@@ -1,0 +1,58 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+
+        {
+            "label": "build",
+            "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "compilets",
+                "copyResources"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        
+        {
+            "label": "compilets",
+            "type": "typescript",
+            "tsconfig": "tsconfig.json",
+            "problemMatcher": [ "$tsc" ],
+            "options": {
+                "statusbar": { "hide" : true }
+            }
+        },
+        {
+            "type": "shell",
+            "label": "copyResources",
+            "command": "copy",
+            "args": [ "-Force", "-Recurse", "resources/*", "build/dist/" ],
+            "options": {
+                "statusbar": { "hide" : false }
+            }
+        },
+        {
+            "type": "shell",
+            "label": "clean",
+            "command" : "Remove-Item",
+            "args": [ "-Recurse", "-Force", "build" ]
+        },
+        {
+            "type": "shell",
+            "label": "run",
+            "options": {
+                "cwd": "${workspaceFolder}/build/dist/"
+            },
+            "command": "php",
+            "args": [ "-S", "127.0.0.1:80" ]
+        }
+    ]
+}

@@ -1,0 +1,51 @@
+body {
+    margin: 0px;
+    background-color: #FEF4E6;
+}
+
+#logo {
+    width: 50vh;
+    margin:0px;
+    padding:0px;
+}
+
+#logotitle {
+    margin:0px;
+    padding:0px;
+}
+
+#content {
+    width:100%;
+    justify-content: center;
+  
+}
+
+#navcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+  
+.navitem {
+    background-color: #cccccc;
+    margin: 10px;
+    cursor: pointer;  
+    padding:5px;
+}
+
+#langNav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.langNavItem {
+    margin: 5px;
+    cursor: pointer;  
+    padding:5px;
+}
+
+.active {
+    background-color: rgb(252, 252, 252);
+    border: solid 2px black;
+}

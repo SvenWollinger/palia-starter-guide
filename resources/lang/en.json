@@ -1,0 +1,15 @@
+{
+    "logo.subtext": "Starter Guide",
+    "nav.general": "❤️ General ❤️",
+    "nav.crops": "🚜 Crops 🚜",
+    "nav.coop": "🧑‍🤝‍🧑 Coop 🧑‍🤝‍🧑",
+    "nav.time": "⏰ Time ⏰",
+
+    "page.general.title": "General",
+    "page.crops.title": "Crops",
+    "page.coop.title": "Coop",
+    "page.time.title": "Time",
+
+    "flag.en": "🇬🇧",
+    "flag.de": "🇩🇪"
+}
