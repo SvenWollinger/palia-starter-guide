@@ -24,7 +24,7 @@ jobs:
         run: tsc --project tsconfig.json
 
       - name: Copy Resources
-        run: cp -R resources build/dist/
+        run: cp -R resources/* build/dist/
 
       - name: Deploy to Pages
         if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
