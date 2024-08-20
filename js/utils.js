@@ -1,10 +1,10 @@
-abstract class TimeUtils {
-    public static getPaliaTime() {
+var _a;
+class TimeUtils {
+    static getPaliaTime() {
         const unixSeconds = Date.now() / 1000;
         const secondsInHourIRL = 60 * 60;
-        const paliaDayDonePercent = (unixSeconds % secondsInHourIRL) / secondsInHourIRL
+        const paliaDayDonePercent = (unixSeconds % secondsInHourIRL) / secondsInHourIRL;
         const hourSteps = (100 / 24) / 100;
-
         const hour = Math.trunc(paliaDayDonePercent / hourSteps);
         const percentMinute = (paliaDayDonePercent / hourSteps) % 1;
         const minutes = Math.trunc(percentMinute * 60);
@@ -13,77 +13,69 @@ abstract class TimeUtils {
             minute: minutes
         };
     }
-
-    public static zeroNumberFix(n: number) {
-        if(n > 9)
+    static zeroNumberFix(n) {
+        if (n > 9)
             return n.toString();
         else
             return "0" + n;
     }
-
-    public static prettifyTime(time, use12h: Boolean) {
+    static prettifyTime(time, use12h) {
         const znf = TimeUtils.zeroNumberFix;
         var result = "";
-        if(use12h) {
-            if(time.hour >= 13) {
+        if (use12h) {
+            if (time.hour >= 13) {
                 result = znf(Number(time.hour) - 12) + ":" + znf(time.minute) + " PM";
-            } else {
+            }
+            else {
                 result = znf(time.hour) + ":" + znf(time.minute) + " AM";
             }
-        } else {
+        }
+        else {
             result = znf(time.hour) + ":" + znf(time.minute);
         }
         return result;
     }
 }
-
-abstract class Utils {
-
-    private static titleElement = Utils.getById("title");
-    private static originalTitle = this.titleElement.innerHTML;
-
-    public static setTitle(text: string) {
-        Utils.titleElement.innerHTML = text;
+class Utils {
+    static setTitle(text) {
+        _a.titleElement.innerHTML = text;
     }
-    
-    public static resetTitle() {
-        Utils.titleElement.innerHTML = Utils.originalTitle;
+    static resetTitle() {
+        _a.titleElement.innerHTML = _a.originalTitle;
     }
-
-    public static showNotification(notification) {
+    static showNotification(notification) {
         if (Notification.permission !== "granted") {
             Notification.requestPermission();
-        } else {
+        }
+        else {
             const alert = new Notification(notification.title, { icon: notification.icon, body: notification.body });
-            alert.onclick = function() {
+            alert.onclick = function () {
                 window.parent.focus();
             };
         }
     }
-
-    public static isMobileAgent() {
+    static isMobileAgent() {
         return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
     }
-
-    public static getById(id: string) {
+    static getById(id) {
         return document.getElementById(id);
     }
 }
-
-function createElement(type: string, setup: (el: HTMLElement) => void): HTMLElement {
+_a = Utils;
+Utils.titleElement = _a.getById("title");
+Utils.originalTitle = _a.titleElement.innerHTML;
+function createElement(type, setup) {
     const newElement = document.createElement(type);
     setup(newElement);
     return newElement;
 }
-
-function appendElement(type: string, parent: HTMLElement, setup: (el: HTMLElement) => void) {
+function appendElement(type, parent, setup) {
     parent.append(createElement(type, setup));
 }
-
-const $ = function(id: string): HTMLElement {
+const $ = function (id) {
     return Utils.getById(id);
-    
-}
-const $c = function(className: string) {
+};
+const $c = function (className) {
     return document.getElementsByClassName(className);
-}
+};
+//# sourceMappingURL=utils.js.map
