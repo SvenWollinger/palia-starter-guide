@@ -12,16 +12,16 @@ jobs:
       - name: Fetch Sources
         uses: actions/checkout@v3
 
-      - name: install node v12
-        uses: actions/setup-node@v1
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 12
-      - name: yarn install
-        run: yarn install
-      - name: npm install
+          node-version: '16'  # or specify the version your project needs
+
+      - name: Install dependencies
         run: npm install
-      - name: tsc
-        uses: icrawl/action-tsc@v1
+
+      - name: Compile Typescript
+        run: tsc --project tsconfig.json
 
       - name: Copy Resources
         run: cp -R resources build/dist/
